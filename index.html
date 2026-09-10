@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0a1a">
+
+    <title>Will You Accept My Side Quest?</title>
+    <meta name="description" content="A little side quest I made for someone special.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Will You Accept My Side Quest?">
+    <meta property="og:description" content="A little side quest I made for someone special.">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='[w3.org](http://www.w3.org/2000/svg)' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="[fonts.googleapis.com](https://fonts.googleapis.com)">
+    <link rel="preconnect" href="[fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+    <link
+        href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap)"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <!-- Background Canvas for Stars -->
+    <canvas id="starfield" aria-hidden="true"></canvas>
+
+    <!-- Particle Container -->
+    <div id="particle-layer" aria-hidden="true"></div>
+
+    <!-- Music Toggle -->
+    <button id="music-toggle" class="music-toggle" aria-label="Toggle music">
+        <span class="music-icon">🔇</span>
+    </button>
+
+    <!-- Main Game Container -->
+    <main id="game-container" class="game-container">
+
+        <!-- HUD -->
+        <header id="hud" class="hud hidden">
+            <div class="hud-content">
+                <div class="hud-title">SIDE QUEST</div>
+                <div class="hud-subtitle">CONFESSION QUEST <span class="heart-icon">❤️</span></div>
+                <div class="hud-progress">
+                    <div class="progress-track">
+                        <div id="progress-bar" class="progress-fill"></div>
+                    </div>
+                    <div id="level-indicator" class="level-indicator">LEVEL 00 / 05</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Landing Screen -->
+        <section id="screen-landing" class="screen screen-landing active">
+            <div class="landing-content">
+                <div class="gamepad-icon">🎮</div>
+                <h1 class="landing-title">
+                    <span class="line">WILL YOU ACCEPT</span>
+                    <span class="line">MY SIDE QUEST?</span>
+                </h1>
+                <p class="landing-subtitle">I made something a little different for you.</p>
+                <p class="landing-reassurance">Don't worry... it won't take long. <span class="heart-inline">❤️</span>
+                </p>
+                <button id="btn-start" class="btn btn-primary btn-press">
+                    START QUEST
+                </button>
+            </div>
+        </section>
+
+        <!-- Level 01: The Mystery -->
+        <section id="screen-level-1" class="screen screen-level hidden">
+            <div class="level-content">
+                <div class="level-badge">LEVEL 01</div>
+                <h2 class="level-heading">QUEST OBJECTIVE</h2>
+                <div class="typewriter-container">
+                    <p id="typewriter-1" class="typewriter-text"></p>
+                </div>
+                <button id="btn-next-1" class="btn btn-primary hidden">NEXT LEVEL →</button>
+            </div>
+        </section>
+
+        <!-- Level 02: The Clues -->
+        <section id="screen-level-2" class="screen screen-level hidden">
+            <div class="level-content">
+                <div class="level-badge">LEVEL 02</div>
+                <p class="level-intro">Let's see if you can figure out who I'm talking about...</p>
+                <div class="clues-container">
+                    <div id="clue-1" class="clue-card hidden">
+                        <div class="clue-number">CLUE #1</div>
+                        <p class="clue-text"></p>
+                    </div>
+                    <div id="clue-2" class="clue-card hidden">
+                        <div class="clue-number">CLUE #2</div>
+                        <p class="clue-text"></p>
+                    </div>
+                    <div id="clue-3" class="clue-card hidden">
+                        <div class="clue-number">CLUE #3</div>
+                        <p class="clue-text"></p>
+                    </div>
+                </div>
+                <p id="clue-guess" class="clue-guess hidden">Any guesses?</p>
+                <button id="btn-next-2" class="btn btn-primary hidden">I THINK I KNOW...</button>
+            </div>
+        </section>
+
+        <!-- Level 03: The Secret -->
+        <section id="screen-level-3" class="screen screen-level hidden">
+            <div class="level-content">
+                <div class="level-badge">LEVEL 03</div>
+                <div class="secret-messages">
+                    <p id="secret-1" class="secret-line hidden"></p>
+                    <p id="secret-2" class="secret-line hidden"></p>
+                    <p id="secret-3" class="secret-line hidden"></p>
+                    <p id="secret-4" class="secret-line hidden"></p>
+                </div>
+                <button id="btn-next-3" class="btn btn-primary hidden">CONTINUE</button>
+            </div>
+        </section>
+
+        <!-- Level 04: The Confession -->
+        <section id="screen-level-4" class="screen screen-confession hidden">
+            <div class="level-content">
+                <div class="level-badge">LEVEL 04</div>
+                <h2 class="confession-title">I HAVE A CONFESSION...</h2>
+                <div class="confession-reveal">
+                    <p id="confession-main" class="confession-main hidden"></p>
+                    <div id="confession-message" class="confession-message hidden"></div>
+                    <div id="confession-heart" class="confession-heart hidden">❤️</div>
+                </div>
+                <div id="confession-prompt" class="confession-prompt hidden">
+                    <p class="prompt-text">QUEST OBJECTIVE</p>
+                    <p class="prompt-sub">Tell me what you think.</p>
+                    <button id="btn-next-4" class="btn btn-primary">I'M READY</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Level 05: Final Choice -->
+        <section id="screen-level-5" class="screen screen-choice hidden">
+            <div class="level-content">
+                <div class="level-badge">LEVEL 05</div>
+                <h2 class="choice-heading">QUEST COMPLETE?</h2>
+                <p class="choice-intro">I've said my part...<br>Now it's completely up to you.</p>
+                <div class="choices-grid">
+                    <button id="choice-yes" class="choice-card choice-yes">
+                        <span class="choice-icon">❤️</span>
+                        <span class="choice-label">I LIKE YOU TOO</span>
+                    </button>
+                    <button id="choice-maybe" class="choice-card choice-maybe">
+                        <span class="choice-icon">🤍</span>
+                        <span class="choice-label">I NEED SOME TIME TO THINK</span>
+                    </button>
+                    <button id="choice-friend" class="choice-card choice-friend">
+                        <span class="choice-icon">🙂</span>
+                        <span class="choice-label">I ONLY SEE YOU AS A FRIEND</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Response: Yes -->
+        <section id="screen-response-yes" class="screen screen-response hidden">
+            <div class="response-content">
+                <div class="response-badge success">QUEST COMPLETE!</div>
+                <div class="response-hearts">❤️❤️❤️</div>
+                <div class="response-messages">
+                    <p id="yes-1" class="response-line hidden">WAIT... REALLY?!</p>
+                    <p id="yes-2" class="response-line hidden">You just made this entire website worth it.</p>
+                    <p id="yes-3" class="response-line hidden">Looks like this side quest had a pretty good ending.
+                        <span class="heart-inline">❤️</span></p>
+                </div>
+                <button id="btn-play-again-yes" class="btn btn-primary hidden">PLAY AGAIN</button>
+            </div>
+        </section>
+
+        <!-- Response: Maybe -->
+        <section id="screen-response-maybe" class="screen screen-response hidden">
+            <div class="response-content">
+                <div class="response-messages">
+                    <p class="response-line">That's completely okay. <span class="heart-inline">🤍</span></p>
+                    <p class="response-line">You don't have to answer right away.</p>
+                    <p class="response-line">I meant what I said, and I respect whatever you feel.</p>
+                    <p class="response-line">Take your time.</p>
+                </div>
+                <button id="btn-back-maybe" class="btn btn-secondary">BACK TO MENU</button>
+            </div>
+        </section>
+
+        <!-- Response: Friend -->
+        <section id="screen-response-friend" class="screen screen-response hidden">
+            <div class="response-content">
+                <div class="response-messages">
+                    <p class="response-line">That's okay. <span class="heart-inline">🙂</span></p>
+                    <p class="response-line">Thank you for being honest with me.</p>
+                    <p class="response-line">I'd rather know how you genuinely feel than make you uncomfortable.</p>
+                    <p class="response-line">No pressure. No awkwardness.</p>
+                    <p class="response-line">You're still someone I appreciate.</p>
+                </div>
+                <button id="btn-back-friend" class="btn btn-secondary">BACK TO MENU</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/confession-data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/audio-manager.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

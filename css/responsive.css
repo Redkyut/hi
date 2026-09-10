@@ -1,0 +1,231 @@
+/* ============================================
+   SIDE QUEST CONFESSION - RESPONSIVE
+   ============================================ */
+
+/* Small phones */
+@media (max-width: 359px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .landing-title {
+        font-size: 2.2rem;
+    }
+    
+    .gamepad-icon {
+        font-size: 2.5rem;
+    }
+    
+    .confession-main {
+        font-size: 2.5rem;
+    }
+    
+    .btn {
+        padding: 14px 32px;
+        min-height: 48px;
+    }
+    
+    .choice-card {
+        padding: 20px 16px;
+    }
+    
+    .screen {
+        padding: 70px 16px 32px;
+    }
+}
+
+/* Standard phones */
+@media (min-width: 360px) and (max-width: 480px) {
+    .landing-title {
+        font-size: 2.5rem;
+    }
+    
+    .confession-main {
+        font-size: 3rem;
+    }
+}
+
+/* Large phones */
+@media (min-width: 481px) and (max-width: 767px) {
+    .landing-title {
+        font-size: 3rem;
+    }
+    
+    .confession-main {
+        font-size: 3.5rem;
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .landing-title {
+        font-size: 3.5rem;
+    }
+    
+    .confession-main {
+        font-size: 4rem;
+    }
+    
+    .choices-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 700px;
+    }
+    
+    .choice-card {
+        flex: 1 1 calc(50% - 8px);
+        min-width: 240px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .game-container {
+        align-items: center;
+    }
+    
+    .screen {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .landing-title {
+        font-size: 4rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .typewriter-text {
+        font-size: 1.6rem;
+    }
+    
+    .confession-main {
+        font-size: 5rem;
+    }
+    
+    .choices-grid {
+        flex-direction: row;
+        max-width: 900px;
+    }
+    
+    .choice-card {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .clues-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .clue-card {
+        flex: 1 1 calc(33.333% - 11px);
+        min-width: 240px;
+        max-width: 320px;
+    }
+}
+
+/* Large desktop */
+@media (min-width: 1440px) {
+    .landing-title {
+        font-size: 4.5rem;
+    }
+    
+    .confession-main {
+        font-size: 6rem;
+    }
+}
+
+/* Landscape phones */
+@media (max-height: 500px) and (orientation: landscape) {
+    .screen {
+        padding-top: 60px;
+        align-items: flex-start;
+    }
+    
+    .landing-content {
+        padding-top: 20px;
+    }
+    
+    .gamepad-icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+    }
+    
+    .landing-title {
+        font-size: 1.8rem;
+    }
+    
+    .secret-messages {
+        min-height: auto;
+        gap: 12px;
+    }
+    
+    .confession-main {
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+}
+
+/* Safe area for notched devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .hud {
+        padding-top: max(12px, env(safe-area-inset-top));
+    }
+    
+    .music-toggle {
+        top: max(16px, env(safe-area-inset-top));
+    }
+    
+    .screen {
+        padding-top: max(80px, env(safe-area-inset-top) + 60px);
+        padding-bottom: max(40px, env(safe-area-inset-bottom));
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    :root {
+        --color-bg: #000000;
+        --color-white: #ffffff;
+        --color-pink: #ff6b9d;
+    }
+    
+    .btn-primary {
+        border: 2px solid white;
+    }
+    
+    .clue-card,
+    .choice-card {
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+}
+
+/* Dark mode (already dark, but ensure consistency) */
+@media (prefers-color-scheme: dark) {
+    /* Already optimized for dark */
+}
+
+/* Print */
+@media print {
+    #starfield,
+    #particle-layer,
+    .music-toggle,
+    .hud {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .screen {
+        position: relative;
+        opacity: 1;
+        page-break-after: always;
+    }
+}

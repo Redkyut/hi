@@ -1,0 +1,258 @@
+/* ============================================
+   SIDE QUEST CONFESSION - ANIMATIONS
+   ============================================ */
+
+/* Fade In Up */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Fade Out */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Slide In Right */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Float */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Heartbeat */
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.15);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.12);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
+
+/* Twinkle */
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Shooting Star */
+@keyframes shoot {
+    0% {
+        transform: translateX(0) translateY(0) rotate(-45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(300px) translateY(300px) rotate(-45deg);
+        opacity: 0;
+    }
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(196, 69, 105, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(196, 69, 105, 0.4);
+    }
+}
+
+/* Confetti Fall */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Heart Float */
+@keyframes heartFloat {
+    0% {
+        transform: translateY(100vh) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(90vh) scale(1) rotate(10deg);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh) scale(0.5) rotate(-20deg);
+        opacity: 0;
+    }
+}
+
+/* Button Press */
+.btn-press {
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-press:active {
+    transform: scale(0.96);
+}
+
+/* Card Reveal */
+.card-reveal {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Level Transition */
+.level-transition-out {
+    animation: fadeOut 0.4s ease forwards;
+}
+
+.level-transition-in {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Typewriter Cursor */
+.typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: var(--color-pink);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Star Twinkle Classes */
+.star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+}
+
+.star-twinkle {
+    animation: twinkle var(--duration, 3s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+/* Shooting Star */
+.shooting-star {
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, white, transparent);
+    border-radius: 1px;
+    animation: shoot var(--duration, 1s) linear forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+/* Confetti Piece */
+.confetti-piece {
+    position: fixed;
+    width: var(--size, 10px);
+    height: var(--size, 10px);
+    background: var(--color, var(--color-pink));
+    border-radius: var(--radius, 0);
+    top: -20px;
+    z-index: 10;
+    animation: confettiFall var(--duration, 3s) linear forwards;
+    animation-delay: var(--delay, 0s);
+    pointer-events: none;
+}
+
+/* Floating Heart */
+.floating-heart {
+    position: fixed;
+    font-size: var(--size, 20px);
+    z-index: 5;
+    animation: heartFloat var(--duration, 6s) ease-in forwards;
+    animation-delay: var(--delay, 0s);
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .star-twinkle,
+    .shooting-star,
+    .confetti-piece,
+    .floating-heart {
+        animation: none !important;
+    }
+    
+    .gamepad-icon {
+        animation: none;
+    }
+    
+    .confession-heart {
+        animation: none;
+    }
+}
